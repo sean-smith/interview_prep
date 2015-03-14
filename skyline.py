@@ -14,6 +14,7 @@ import sys, heapq
 
 
 list = [(int(line.split()[0]), (int(line.split()[1]), int(line.split()[2])))  for line in sys.stdin]
+#list = [(12, (7, 16)), (14, (3, 25)), (19, (18, 22)), (23, (13, 29)), (24, (4, 28))]
 
 heapq.heapify(list)
 
@@ -21,11 +22,11 @@ heapq.heapify(list)
 def skyline(length, building):
 	
 	length, building = up(length, building)
-	#print(length, building, list)
+	print(length, building, list)
 	length, building = middle(length, building)
-	#print(length, building, list)
+	print(length, building, list)
 	length, building = down(length, building)
-	#print(length, building, list)
+	print(length, building, list)
 
 	#GET NEXT IF NO NEXT RETURN HEIGHT
 	if len(list) > 0:
@@ -71,7 +72,8 @@ def down(length, building):
 	#if building starts before or equal to end and buidling ends past the end
 	if s[0] <= building[1][1]:
 		if s[1][1] > building[1][1]:
-			return down(length+(building[1][0] - s[1][0])+(s[1][1] - building[1][1]),s)
+			l, b = middle(length+(building[1][0] - s[1][0]),(building[1][1],(s[1][0], s[1][1])))
+			return l+b[1][0], b
 		else:
 			return down(length, building)
 	else:
