@@ -13,26 +13,31 @@ python3 skyline.py < in.txt
 import sys, heapq
 
 
-class Building:
-	def __init__(self, inp):
-		line = inp.split()
-		self.start = int(line[0])
-		self.end = int(line[2])
-		self.height	 = int(line[1])
-	def __str__(self):
-		return str(self.start)+" "+str(self.height)+" "+str(self.end)
-	def __lt__(self, thing):
-		return self.start < thing.start
-	def __gt__(self, thing):
-		return self.start > thing.start
-
-
-
-list = [Building(line) for line in sys.stdin]
+list = [(line.split()[0], (line.split()[1], line.split()[2]))  for line in sys.stdin]
 
 heapq.heapify(list)
 
-print(list)
-	
 
 
+def skyline(item):
+	s,h,e = item
+
+
+	#The start value	
+	item = heapq.pop(list)
+	if item.start == s and item.height > height:
+		print()
+
+
+	#The top portion
+
+
+	#The down portion
+
+
+
+
+
+
+
+#print(skyline(heapq.pop(list)))
