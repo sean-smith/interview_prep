@@ -13,41 +13,42 @@ python3 skyline.py < in.txt
 import sys, heapq
 
 
-list = [(line.split()[0], (line.split()[1], line.split()[2]))  for line in sys.stdin]
+list = [(int(line.split()[0]), (int(line.split()[1]), int(line.split()[2])))  for line in sys.stdin]
 
 heapq.heapify(list)
 
 
 def skyline(length, building):
-	s,r = building
-	h,e = r
+	
+
+	length, building = up(length, building)
+	length, building = top(length, building)
+	length, building = down(length, building)
+
+	#GET NEXT IF NO NEXT RETURN HEIGHT
 
 
-	#The start value
-	s_1, r = heapq.pop(list)
-	h_1, e_1 = r	
-	if s == s_1 and h_1 > h:
-		length, building  = skyline(length, (s_1, r))
+
+
+def up(length, building):
+	s = heapq.pop(list)
+	if building[0] == s[0] and s[1][0] > building[1][0]:
+		return up(s)
 	else:
-		heapq.push((s_1, r))
-		length += building[0]
+		heapq.push(list, s)
+		return building[0], building
 
-	#The top portion
-	s,r = building
-	h,e = r
-	s_1, r = heapq.pop(list)
-	h_1, e_1 = r	
-	if s_1 > e and h_1 > h:
-		length, building  = skyline(length+(s_1-s), (s_1, r))
+def middle(length, building):
+	s = heapq.pop(list)
+	#if building starts before it ends and is taller
+	if s[0] > building[1][1] and s[1][0] > building[1][0]
+		return up(s)
 	else:
-		heapq.push((s_1, r))
-		length += building[0]
+		heapq.push(list, s)
+		return building[0], building
 
 
-	#The down portion
-
-
-
+def down()
 
 
 
