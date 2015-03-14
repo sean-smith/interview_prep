@@ -22,35 +22,49 @@ def skyline(length, building):
 	
 
 	length, building = up(length, building)
-	length, building = top(length, building)
+	length, building = middle(length, building)
 	length, building = down(length, building)
 
 	#GET NEXT IF NO NEXT RETURN HEIGHT
+	if len(list) > 0:
+		length = skyline(length, heapq.heappop(list))
+		return length
+	else:
+		return length
 
 
 
 
 def up(length, building):
-	s = heapq.pop(list)
+	s = heapq.heappop(list)
 	if building[0] == s[0] and s[1][0] > building[1][0]:
-		return up(s)
+		return up(length, s)
 	else:
-		heapq.push(list, s)
-		return building[0], building
+		heapq.heappush(list, s)
+		return length+building[0], building
 
 def middle(length, building):
-	s = heapq.pop(list)
+	s = heapq.heappop(list)
 	#if building starts before it ends and is taller
-	if s[0] > building[1][1] and s[1][0] > building[1][0]
-		return up(s)
+	if s[0] < building[1][1] and s[1][0] > building[1][0]:
+		return middle(length+(s[0]-building[0])+(s[1][0] - building[1][0]),s)
 	else:
-		heapq.push(list, s)
-		return building[0], building
+		heapq.heappush(list, s)
+		return length+building[1][0], building
 
 
-def down()
+def down(length, building):
+	if len(list) == 0:
+		return length+building[1][0], []
+	s = heapq.heappop(list)
+	#if building starts before or equal to end and buidling ends past the end
+	if s[0] <= building[1][1] and s[1][1] > building[0]:
+		return down(length+(building[1][0] - s[1][0])+(s[1][1] - building[1][1]),s)
+	else:
+		heapq.heappush(list, s)
+		return length+building[1][0], building
 
 
 
 
-print(skyline(0, heapq.pop(list)))
+print(skyline(0, heapq.heappop(list)))
