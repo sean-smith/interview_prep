@@ -22,11 +22,11 @@ heapq.heapify(list)
 def skyline(length, building):
 	
 	length, building = up(length, building)
-	print(length, building, list)
+	#print(length, building, list)
 	length, building = middle(length, building)
-	print(length, building, list)
+	#print(length, building, list)
 	length, building = down(length, building)
-	print(length, building, list)
+	#print(length, building, list)
 
 	#GET NEXT IF NO NEXT RETURN HEIGHT
 	if len(list) > 0:
@@ -54,6 +54,7 @@ def middle(length, building):
 	#if building starts before it ends and is taller
 	if s[0] < building[1][1]:
 		if s[1][0] > building[1][0]:
+			heapq.heappush(list, building)
 			return middle(length+(s[0]-building[0])+(s[1][0] - building[1][0]),s)
 		else:
 			x = middle(length, building)
@@ -65,7 +66,7 @@ def middle(length, building):
 
 
 def down(length, building):
-	print(length, building, list)
+	print(length, building[0])
 	if len(list) == 0:
 		return length+building[1][0], building
 	s = heapq.heappop(list)
@@ -73,7 +74,7 @@ def down(length, building):
 	if s[0] <= building[1][1]:
 		if s[1][1] > building[1][1]:
 			l, b = middle(length+(building[1][0] - s[1][0]),(building[1][1],(s[1][0], s[1][1])))
-			return l+b[1][0], b
+			return down(l,b)
 		else:
 			return down(length, building)
 	else:
