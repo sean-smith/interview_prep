@@ -20,10 +20,12 @@ heapq.heapify(list)
 
 def skyline(length, building):
 	
-
 	length, building = up(length, building)
+	#print(length, building, list)
 	length, building = middle(length, building)
+	#print(length, building, list)
 	length, building = down(length, building)
+	#print(length, building, list)
 
 	#GET NEXT IF NO NEXT RETURN HEIGHT
 	if len(list) > 0:
@@ -41,25 +43,37 @@ def up(length, building):
 		return up(length, s)
 	else:
 		heapq.heappush(list, s)
-		return length+building[0], building
+		return length+building[1][0], building
 
 def middle(length, building):
+	#print(length, building, list)
+	if len(list) == 0:
+		return length+(building[1][1]-building[0]), building
 	s = heapq.heappop(list)
 	#if building starts before it ends and is taller
-	if s[0] < building[1][1] and s[1][0] > building[1][0]:
-		return middle(length+(s[0]-building[0])+(s[1][0] - building[1][0]),s)
+	if s[0] < building[1][1]:
+		if s[1][0] > building[1][0]:
+			return middle(length+(s[0]-building[0])+(s[1][0] - building[1][0]),s)
+		else:
+			x = middle(length, building)
+			heapq.heappush(list, s)
+			return x
 	else:
 		heapq.heappush(list, s)
-		return length+building[1][0], building
+		return length+(building[1][1]-building[0]), building
 
 
 def down(length, building):
+	print(length, building, list)
 	if len(list) == 0:
-		return length+building[1][0], []
+		return length+building[1][0], building
 	s = heapq.heappop(list)
 	#if building starts before or equal to end and buidling ends past the end
-	if s[0] <= building[1][1] and s[1][1] > building[0]:
-		return down(length+(building[1][0] - s[1][0])+(s[1][1] - building[1][1]),s)
+	if s[0] <= building[1][1]:
+		if s[1][1] > building[1][1]:
+			return down(length+(building[1][0] - s[1][0])+(s[1][1] - building[1][1]),s)
+		else:
+			return down(length, building)
 	else:
 		heapq.heappush(list, s)
 		return length+building[1][0], building
