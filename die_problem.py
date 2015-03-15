@@ -2,8 +2,11 @@
 Die Problem that I got at the athena interview
 
 Sean Smith 
+swsmith@bu.edu	
+2015
 
-Given 
+Given a die in a 3x2 matrx find the lowest cost path from (0,0) to (3,2)
+The cost of a path is facing up value once you move
 """
 
 
@@ -28,6 +31,7 @@ class Die:
 		self.front = temp
 		self.back = 7 - self.front
 		self.bottom = 7 - self.top
+		return self
 	def moveEast(self):
 		self.positionx += 1
 		self.cost += self.right
@@ -36,17 +40,26 @@ class Die:
 		self.left = self.bottom
 		self.bottom = 7 - self.top
 		self.right = 7 - self.left
+		return self
+	def __str__(self):
+		return str(self.path)
 
 
 def solve(Die):
+	path1 = None
+	path2 = None
 	if Die.positionx == 3 and Die.positiony == 2:
 		return Die
-	elif Die.positionx < 3 and Die.positiony < 2:
+	if Die.positionx < 3:
 		path1 = solve(Die.moveEast())
+	if Die.positiony < 2:
 		path2 = solve(Die.moveNorth())
-
-		return min(path1, path2, key=lambda n: Die.cost)
-
+	if path1 is None:
+		return path2
+	if path2 is None:
+		return path1
+	else:
+		return min(path1, path2, key=lambda n: n.cost)
 
 
 
