@@ -6,7 +6,7 @@ swsmith@bu.edu
 2015
 
 Given a die in a 3x2 matrx find the lowest cost path from (0,0) to (3,2)
-The cost of a path is facing up value once you move
+The cost of a path is the value facing up once you move
 """
 
 
