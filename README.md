@@ -1,2 +1,7 @@
-# interview_prep
-cracking the coding interview python solutions
+# Interview Prep
+Solutions to interview problems I find interesting
+
+* Skyline Problem
+* Die Problem
+
+
