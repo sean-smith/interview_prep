@@ -12,7 +12,6 @@ def hash(obj, size):
 #1.1
 def unique(string):
 	list = [0]*26
-	print(len(list))
 	string = string.lower()
 	for each in string:
 		h = hash(each, 26)
@@ -22,13 +21,21 @@ def unique(string):
 			list[h] = 1
 	return True
 
-#reverses a string
-#1.2
+print "isUnique(sjkdjfskjdf) = " + str(unique("sjkdjfskjdf"))
+print "isUnique(abcdefghijklmnop) = " + str(unique("abcdefghijklmnopqrstuvwxyz"))
+
+
+# Reverses a string
+# 1.2
+# I'm going to write a C implementation as well 
+# as I think this is a better question for a low level language
 def reverse(str):
 	new = ""
 	for i in range(len(str)-1, -1, -1):
 		new += str[i]
 	return new
+
+print "reverse(sjkdjfskjdf) = " + str(reverse("sjkdjfskjdf"))
 
 #figures out if one string is a permutation of another
 #1.3
