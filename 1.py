@@ -26,7 +26,7 @@ print "isUnique(abcdefghijklmnop) = " + str(unique("abcdefghijklmnopqrstuvwxyz")
 
 
 # Reverses a string
-# 1.2
+# 1.2 v5
 # I'm going to write a C implementation as well 
 # as I think this is a better question for a low level language
 def reverse(str):
@@ -37,19 +37,23 @@ def reverse(str):
 
 print "reverse(sjkdjfskjdf) = " + str(reverse("sjkdjfskjdf"))
 
-#figures out if one string is a permutation of another
-#1.3
+# Figures out if one string is a permutation of another
+# 1.3v5 (or 1.2v6)
 def permutation(st1, st2):
 	st1 = st1.lower()
 	st2 = st2.lower()
 	list = [0]*26
 	for letter in st1:
 		h = hash(letter, 26)
-		list[h] = 1
-	for each in st2:
-		if list[hash(each, 26)] != 1:
+		list[h] += 1
+	for letter in st2:
+		list[hash(letter, 26)] -= 1
+		if list[hash(letter, 26)] < 0:
 			return False
 	return len(st1) == len(st2)
+
+print "permutation('fsjkdjfskjd', 'sjkdjfskjdf') = " + str(permutation("fsjkdjfskjd", "sjkdjfskjdf"))
+
 
 #replaces spaces in a string by %20 similar to urlencode
 #1.4
@@ -91,4 +95,4 @@ def compress(string):
 
 
 
-print(compress("ccbaaassssssnnfksss"))
+print "compress('ccbaaassssssnnfksss') = " + compress('ccbaaassssssnnfksss')
