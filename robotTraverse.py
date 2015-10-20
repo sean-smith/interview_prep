@@ -5,36 +5,31 @@
 import sys
 
 
+def parseFile(path):
 
-if len(sys.argv) != 2:
-	print "Input a map file!\nrobotTraverse.py [path_to_file]"
-	sys.exit()
+	f = open(path, "r")
 
-path = sys.argv[1]
+	max_x = 3
+	max_y = 2
 
-f = open(path, "r")
+	map = [[0 for x in range(max_x)] for x in range(max_y)] 
 
-max_x = 3
-max_y = 2
+	# Initialize 2d array for map
+	# x, y values are indexed from upper left corner
+	for y, line in enumerate(f):
+		for x, dot in enumerate(line):
+			if dot != '\n':
+				print "x, y = "+str(x)+","+str(y)+" dot = "+dot
+				map[y][x] = dot
+			if dot == 'R':
+				robot_x = x
+				robot_y = y
 
-map = [[0 for x in range(max_x)] for x in range(max_y)] 
+	f.close()
 
-# Initialize 2d array for map
-# x, y values are indexed from upper left corner
-for y, line in enumerate(f):
-	for x, dot in enumerate(line):
-		if dot != '\n':
-			print "x, y = "+str(x)+","+str(y)+" dot = "+dot
-			map[y][x] = dot
-		if dot == 'R':
-			robot_x = x
-			robot_y = y
+	return map, robot_x, robot_y
 
-f.close()
-
-print map
-
-print "robot_x = "+str(robot_x)+" robot_y = "+str(robot_y)
+	print "robot_x = "+str(robot_x)+" robot_y = "+str(robot_y)
 
 
 
@@ -60,3 +55,13 @@ def traverse(x, y):
 print traverse(robot_x, robot_y)
 print map
 
+
+def main():
+	if len(sys.argv) != 2:
+		print "Input a map file!\nrobotTraverse.py [path_to_file]"
+		sys.exit()
+
+	parseFile(sys.arv[1])
+
+
+main()
