@@ -40,16 +40,22 @@ print "robot_x = "+str(robot_x)+" robot_y = "+str(robot_y)
 
 def traverse(x, y):
 	print "x, y = "+str(x)+","+str(y)+"\ndot = "+map[y][x]
-	if (x < max_x and y < max_y and x >= 0 and y >= 0):
-		if map[y][x] == 'T':
-			return True
-		if not (map[y][x] == 'O' or map[y][x] == 'R'):
-			map[y][x] = 'R'
-			return traverse(x+1,y)
-			return traverse(x-1,y)
-			return traverse(x,y+1)
-			return traverse(x,y-1)
 
+	if map[y][x] == 'T':
+		return True
+
+
+	map[y][x] = 'R'
+	if x > 0:
+		traverse(x-1,y)
+	if x < (max_x - 1):
+		traverse(x+1,y)
+	if y > 0:
+		traverse(x,y-1)
+	if y < (max_y - 1):
+		traverse(x,y+1)
+	else:
+		return False
 
 print traverse(robot_x, robot_y)
 print map
