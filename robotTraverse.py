@@ -45,10 +45,10 @@ def traverse(x, y):
 			return True
 		if not (map[y][x] == 'O' or map[y][x] == 'R'):
 			map[y][x] = 'R'
-			traverse(x+1,y)
-			traverse(x-1,y)
-			traverse(x,y+1)
-			traverse(x,y-1)
+			return traverse(x+1,y)
+			return traverse(x-1,y)
+			return traverse(x,y+1)
+			return traverse(x,y-1)
 
 
 print traverse(robot_x, robot_y)
