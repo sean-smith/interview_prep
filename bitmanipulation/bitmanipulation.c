@@ -42,8 +42,7 @@ int f3(int x)
 
 
 // Work in progress
-// 11 - 01 = 10
-// 11 - 10 = 01
+// Same as xor 3 and negating then masking
 
 int f4(int x)
 {
