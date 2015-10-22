@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 // Write a function that maps:
 // f(1) -> 2
@@ -71,6 +72,16 @@ int f7(int x)
 	}
 }
 
+int f8(int x)
+{
+	return (int)pow(2, 2-x);
+}
+
+int f9(int x)
+{
+	return (x % 2) + 1;
+}
+
 
 int main(int argc, char** argv) {
 	printf("f0(1) = %d, f0(2) = %d\n", f0(1), f0(2));
@@ -81,6 +92,8 @@ int main(int argc, char** argv) {
 	printf("f5(1) = %d, f5(2) = %d\n", f5(1), f5(2));
 	printf("f6(1) = %d, f6(2) = %d\n", f6(1), f6(2));
 	printf("f7(1) = %d, f7(2) = %d\n", f7(1), f7(2));
+	printf("f8(1) = %d, f8(2) = %d\n", f8(1), f8(2));
+	printf("f9(1) = %d, f9(2) = %d\n", f9(1), f9(2));
 
 	return 1;
 }
