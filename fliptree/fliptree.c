@@ -30,11 +30,11 @@ void flipTree(struct Node *n)
 void printTree(struct Node *n, int spaces)
 {
 	if (n != NULL) {
-	 	printTree(n->left, spaces+2);
+	 	printTree(n->left, spaces+3);
 	 	for (int i = 0; i <= spaces; i++)
 	 		printf(" ");
 	 	printf("%d\n", n->val);
-	 	printTree(n->right, spaces+2);
+	 	printTree(n->right, spaces+3);
 	}
 }
 
