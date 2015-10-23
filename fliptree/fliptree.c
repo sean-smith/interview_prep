@@ -13,6 +13,7 @@ struct Node {
 	int val;
 };
 
+
 void flipTree(struct Node *n)
 {
 	struct Node *tmp = n->left;
@@ -26,12 +27,14 @@ void flipTree(struct Node *n)
 	}
 }
 
-void printTree(struct Node *n)
+void printTree(struct Node *n, int spaces)
 {
 	if (n != NULL) {
-		printf("%d\n", n->val);
-	 	printTree(n->left);
-	 	printTree(n->right);
+	 	printTree(n->left, spaces+2);
+	 	for (int i = 0; i <= spaces; i++)
+	 		printf(" ");
+	 	printf("%d\n", n->val);
+	 	printTree(n->right, spaces+2);
 	}
 }
 
@@ -66,10 +69,10 @@ int main()
 	n2->right = n6;
 
 
-	printTree(n);
+	printTree(n, 0);
 	flipTree(n);
 	printf("\n");
-	printTree(n);
+	printTree(n, 0);
 
 
 }
