@@ -68,11 +68,9 @@ int main()
 	n2->left = n5;
 	n2->right = n6;
 
-
 	printTree(n, 0);
 	flipTree(n);
 	printf("\n");
 	printTree(n, 0);
-
 
 }
