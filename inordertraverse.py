@@ -21,6 +21,12 @@ arr = [r1, r2, r3, r4, r5]
 max_x = len(arr[0])
 max_y = len(arr)
 
+
+# Right now the algorithm is deterministic 
+# which doesn't work when there's two different paths and
+# only one of them works
+# like above
+
 def traverse(x, y, current, path):
     print path, current
     if current == 9:
