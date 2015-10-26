@@ -24,6 +24,31 @@ def unique(string):
 print "isUnique(sjkdjfskjdf) = " + str(unique("sjkdjfskjdf"))
 print "isUnique(abcdefghijklmnop) = " + str(unique("abcdefghijklmnopqrstuvwxyz"))
 
+# Input will be an list  with duplicates and your code should remove the duplicates.
+
+# Take a list and hash values into a dictionary
+# for each subsequent value look up the hash to determine if it's duplicated
+
+def removeDups(list):
+    duplicates = {}
+    i = 0
+    length_of_list = len(list)
+    while(i < length_of_list):
+        value = list[i]
+        if value in duplicates:
+            list.remove(value)
+            length_of_list -= 1
+        else:
+            duplicates[value] = 1
+            i+= 1
+            
+            
+    return list
+    
+print "removeDups([1,2,2, 3, 4, 3, 4]) = " + str(removeDups([1,2,2, 3, 4, 3, 4]))
+print "removeDups(['a', 'b', 'a', 'e', 'f', 'f', 'e']) = " + str(removeDups(['a', 'b', 'a', 'e', 'f', 'f', 'e']))
+
+
 
 # Reverses a string
 # 1.2 v5
