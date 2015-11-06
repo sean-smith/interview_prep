@@ -12,9 +12,7 @@ user_hobbies
 select users.name, user_hobies.hobby from users, user_hobbies where users.id = user_hobbies.user_id and hobby like '%soccer%';
 */
 
-// Determine if a string is a subset of another string eg. 'bat' is a substring of 'abate'
-// To execute C, please define "int main()"
-
+// Determine if a str2 is a subset of str1 eg. 'bat' is a substring of 'abate'
 int substring(char *str1, char *str2) {
   if (str2[0] == '\0') {
     return 1;
@@ -41,42 +39,3 @@ int main(int argc, char **argv) {
   printf("substring(%s, %s) = %d\n", str1, str2, substring(str1, str2));
   return 0;
 }
-
-
-/*
-Your previous Python content is preserved below:
-
-
-# 
-# Your previous Plain Text content is preserved below:
-# 
-# Input will be an list  with duplicates and your code should remove the duplicates.
-# 
-
-# Take a list and hash values into a dictionary
-# for each subsequent value look up the hash to determine if it's duplicated
-
-
-def removeDups(list):
-    duplicates = {}
-    i = 0
-    length_of_list = len(list)
-    while(i < length_of_list):
-        value = list[i]
-        if value in duplicates:
-            list.remove(value)
-            length_of_list -= 1
-        else:
-            duplicates[value] = 1
-            i+= 1
-            
-            
-    print list
-    
-removeDups([1,2,2, 3, 4, 3, 4])
-
-
-
-
-*/
-
