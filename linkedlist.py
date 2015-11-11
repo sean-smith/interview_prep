@@ -2,10 +2,9 @@ import sys
 # Python linked list implementation
 
 class Node:
-
-	def __init__(self, value):
+	def __init__(self, value, next = None):
 		self.val = value
-		self.next = None
+		self.next = next
 
 def print_list(n):
 	while n.next is not None:
@@ -20,18 +19,14 @@ def insert(n, val):
 	n.next = Node(val)
 
 
-# To do
+# Reverses a linked list by flipping next pointers
 def reverse(last, n):
-	if n.next is None:
-		n.next = last
-		return n
+	if n is None:
+		return last
 	else:
-		tmp = n.next
-		n.next.next = n
+		tmp = Node(n.val, n.next)
 		n.next = last
-		reverse(n, tmp)
-
-
+		return reverse(n, tmp.next)
 
 
 
