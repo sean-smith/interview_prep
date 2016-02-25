@@ -19,6 +19,14 @@ def insert(n, val):
 	n.next = Node(val)
 
 
+# Test to show that nothing needs to be returned
+def traverse(n):
+	if n == None:
+		return
+	else:
+		print n.val
+		traverse(n.next)
+
 # Reverses a linked list by flipping next pointers
 def reverse(last, n):
 	if n is None:
@@ -38,3 +46,5 @@ insert(n, "e")
 print_list(n)
 n = reverse(None, n)
 print_list(n)
+
+# traverse(n)

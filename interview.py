@@ -5,14 +5,21 @@ Athena technical interview
 
 
 Problem:
+Say you are playing a game where after each round there’s three options. You can either score 0,1 or 2 points. The probability of scoring 0 points is 50%, the probability of scoring 1 point is 30% and the probability of scoring 2 points is 20%. 
+
+Part 1:
+What’s the probability of each possible score after 5 rounds?
+
 Given the probabilities of scoring each point as follows:
 P[0] = .5
 P[1] = .3
 P[2] = .2
 
-Give the probability of scoring different values after 5 rounds of the above probability.
+Part 2:
+Give the top 10 most likely scores after N rounds.
 
-Then they extended it to give the top ten probabilities and the probability given any probability distribution.
+Part 3:
+Give the top 10 most likely scores for any probability distribution. 
 """
 
 import heapq
@@ -21,7 +28,7 @@ p0 = .5
 p1 = .3
 p2 = .2
 
-
+# Part 1
 def p(s, r):
 	if r ==1:
 		if s== 1:
@@ -36,6 +43,7 @@ def p(s, r):
 		return (p(s,r-1)*p0 + p(s-1, r-1)*p1 + p(s-2, r-1)*p2)
 
 """
+# Part 1
 for i in range(0,11):
 	print(i, p(i, 5))
 """
@@ -73,8 +81,8 @@ def anyP(s,r,l):
 			if l[i] > 0:
 				sum += anyP(s-i, r-1, l)*l[i]
 		return sum
-
+"""
 for i in range(0, (len(l)-1)*5+1):
 	print(i, anyP(i, 5, l))
-
+"""
 
